@@ -5,7 +5,7 @@ export const ENV = 'production';
 
 const baseUrls = {
   local: "http://localhost:4000", // Proxy handles it
-  production: "http://ec2-65-0-176-231.ap-south-1.compute.amazonaws.com", // Use real server API
+  production: "https://forbin.duckdns.org/", // Use real server API
 };
 
 export const baseUrl = baseUrls[ENV];
