@@ -5,11 +5,12 @@ import { Route, Routes } from "react-router-dom";
 import { List, Order, Add } from "./pages/index.js";
 import Login from "./components/Login.jsx";
 import { ToastContainer } from "react-toastify";
-
-
+import NotFound from "./pages/NotFound.jsx";
 
 const App = () => {
-  const [token, setToken] = useState(localStorage.getItem("token") ? localStorage.getItem("token") : "");
+  const [token, setToken] = useState(
+    localStorage.getItem("token") ? localStorage.getItem("token") : ""
+  );
 
   /* setting token to local storage */
   useEffect(() => {
@@ -29,9 +30,10 @@ const App = () => {
             <Sidebar />
             <div className="w-[70%] mx-auto ml-[max(5vm, 25px)] my-8 text-grya-600 text-base">
               <Routes>
-                <Route path="/" element={<Add token={token}/>} />
-                <Route path="/order" element={<Order token={token}/>} />
-                <Route path="/List" element={<List token={token}/>} />
+                <Route path="/" element={<Add token={token} />} />
+                <Route path="/order" element={<Order token={token} />} />
+                <Route path="/List" element={<List token={token} />} />
+                <Route path="*" element={<NotFound/>} />
               </Routes>
             </div>
           </div>
