@@ -4,10 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 
 import { toast } from "react-toastify";
-import { use } from "react";
-
+import api from "../api/apiConfig";
 const Add = ({ token }) => {
-  const backendUrl = "http://localhost:4000";
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
   const [image3, setImage3] = useState(null);
@@ -23,7 +21,7 @@ const Add = ({ token }) => {
 
   useEffect(() => {
     console.log(productSizes);
-  }, [  productSizes]);
+  }, [productSizes]);
 
   /* SENDING FORM DATA TO API */
   const handleFormSubmit = async (e) => {
@@ -46,11 +44,9 @@ const Add = ({ token }) => {
       formData.append("bestseller", bestSeller);
 
       /* sending data to api */
-      const response = await axios.post(
-        backendUrl + "/api/product/add",
-        formData,
-        { headers: { token } }
-      );
+      const response = await api.post("/api/product/add", formData, {
+        headers: { token },
+      });
       if (response.data.success) {
         toast.success("Product added successfully");
         setProductName("");

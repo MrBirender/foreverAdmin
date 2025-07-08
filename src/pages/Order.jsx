@@ -3,9 +3,9 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useEffect } from "react";
 import { assets } from "../assets/admin_assets/assets";
+import api from "../api/apiConfig";
 
 const Order = ({ token }) => {
-  const backendUrl = "http://localhost:4000";
   const [orders, setOrders] = useState([]);
 
   const fetchOrders = async () => {
@@ -13,8 +13,8 @@ const Order = ({ token }) => {
       if (!token) {
         return null;
       }
-      const response = await axios.post(
-        backendUrl + "/api/order/list",
+      const response = await api.post(
+        "/api/order/list",
         {},
         { headers: { token } }
       );
@@ -37,8 +37,8 @@ const Order = ({ token }) => {
   /* updating order status in database */
   const updateStatus = async (orderId, event) => {
     try {
-      const response = await axios.post(
-        backendUrl + "/api/order/status",
+      const response = await api.post(
+        "/api/order/status",
         { orderId, status: event.target.value },
         { headers: { token } }
       );
@@ -98,9 +98,7 @@ const Order = ({ token }) => {
             </p>
             <p className="mt-3">Method: {order.paymentMethod}</p>
             <p>Payment: {order.payment ? "done" : "pending"}</p>
-            <p>
-              Date:{new Date(order.date).toLocaleDateString()}
-            </p>
+            <p>Date:{new Date(order.date).toLocaleDateString()}</p>
           </div>
           <p className="text-sm sm:text-lg font-medium">
             <span className="font-bold">₹</span>

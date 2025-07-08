@@ -7,7 +7,7 @@ import Login from "./components/Login.jsx";
 import { ToastContainer } from "react-toastify";
 
 
-export const beckendUrl = "http://localhost:4000"
+
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token") ? localStorage.getItem("token") : "");
 

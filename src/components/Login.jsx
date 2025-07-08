@@ -1,8 +1,7 @@
 import React from "react";
 import { assets } from "../assets/admin_assets/assets";
-import axios from "axios";
-import { beckendUrl } from "../App";
 import { toast } from "react-toastify";
+import api from "../api/apiConfig";
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = React.useState("");
@@ -11,7 +10,7 @@ const Login = ({ setToken }) => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await axios.post(beckendUrl + "/api/user/admin", {
+      const response = await api.post("/api/user/admin", {
         email,
         password,
       });
